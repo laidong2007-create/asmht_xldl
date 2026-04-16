@@ -1,4 +1,4 @@
-# 1. IMPORT LIBRARIES
+# 1. IMPORT 
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, cross_val_score
@@ -60,7 +60,7 @@ skewed_cols = skewness[skewness > 1].index
 pt = PowerTransformer(method='yeo-johnson')
 
 for col in skewed_cols:
-    if col != 'price':  # không transform target
+    if col != 'price':  
         df[col] = pt.fit_transform(df[[col]])
 
 # ==============================
@@ -158,13 +158,13 @@ print("\nCV RMSE:", np.mean(np.sqrt(-cv_scores)))
 # 14. VISUALIZATION
 # ==============================
 
-# Price distribution
+
 plt.figure()
 sns.histplot(df['price'], kde=True)
 plt.title("Price Distribution")
 plt.show()
 
-# Price per m2
+
 if 'price_per_m2' in df.columns:
     plt.figure()
     sns.histplot(df['price_per_m2'], kde=True)
@@ -177,7 +177,3 @@ if 'price_per_m2' in df.columns:
 if 'price_per_m2' in df.columns:
     print("\nTop 5 expensive areas (price/m2):")
     print(df.sort_values('price_per_m2', ascending=False).head())
-
-# ==============================
-# DONE
-# ==============================
